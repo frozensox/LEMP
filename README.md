@@ -5,5 +5,7 @@
 │ └─ php
 │   ├─ Dockerfile
 │   └─ php.ini # PHPの設定ファイル
-├─ project # Laravelをインストールするディレクトリ
+│ └─ nginx
+│   └─ default.conf # サーバ設定ファイル
+├─ project # Laravelプロジェクトディレクトリ
 └─ docker-compose.yml
