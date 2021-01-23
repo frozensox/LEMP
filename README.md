@@ -31,19 +31,23 @@ $ docker-compose up -d --build
 ```
 $ docker-compose exec app bash
 ```
-4. Laravelをインストール
+4. プロジェクトフォルダを作成（省略可）
+```
+# mkdir [プロジェクト名] && cd $_
+```
+5. Laravelをインストール
 ```
 # composer install
 ```
-5. .envファイルを作成
+6. .envファイルを作成
 ```
 # cp .env.example .env
 ```
-6. アプリケーションキーを生成
+7. アプリケーションキーを生成
 ```
 # php artisan key:generate
 ```
-7. マイグレーションの実行を確認
+8. マイグレーションの実行を確認
 ```
 # php artisan migrate
 ```
