@@ -5,15 +5,20 @@ Laravel用のLEMP(PHP+nginx+MySQL)環境をDockerで構築します。
 .
 ├─ README.md
 ├─ docker-compose.yml
+│
 ├── container
+│    │
 │    ├── php
-│    │   ├─ Dockerfile
-│    │   └─ php.ini # PHPの設定ファイル
+│    │    ├─ Dockerfile
+│    │    └─ php.ini # PHPの設定ファイル
+│    │
 │    ├── nginx
-│    │   └─ default.conf # サーバ設定ファイル
+│    │    └─ default.conf # サーバ設定ファイル
+│    │
 │    └── mysql
-│       ├─ Dockerfile
-│       └─ my.cnf # MySQLの設定ファイル
+│         ├─ Dockerfile
+│         └─ my.cnf # MySQLの設定ファイル
+│
 └── laravel # Laravelのインストール先
 ```
 
