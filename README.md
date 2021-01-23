@@ -22,32 +22,36 @@ Laravel用のLEMP(PHP+nginx+MySQL)環境をDockerで構築します。
 ```
 $ git clone https://github.com/frozensox/LEMP.git
 ```
-2. コンテナをビルド
+2. .gitディレクトリを削除（Gitはダウンロードするためだけに使用します）
 ```
 $ cd LEMP
+rm -rf .git
+```
+3. コンテナをビルド
+```
 $ docker-compose up -d --build
 ```
-3. appコンテナに接続
+4. appコンテナに接続
 ```
 $ docker-compose exec app bash
 ```
-4. プロジェクトフォルダを作成（省略可）
+5. プロジェクトフォルダを作成（省略可）
 ```
 # mkdir [プロジェクト名] && cd $_
 ```
-5. Laravelをインストール
+6. Laravelをインストール
 ```
 # composer install
 ```
-6. .envファイルを作成
+7. .envファイルを作成
 ```
 # cp .env.example .env
 ```
-7. アプリケーションキーを生成
+8. アプリケーションキーを生成
 ```
 # php artisan key:generate
 ```
-8. マイグレーションの実行を確認
+9. マイグレーションの実行を確認
 ```
 # php artisan migrate
 ```
