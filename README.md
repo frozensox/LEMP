@@ -4,8 +4,8 @@ Laravel用のLEMP(PHP+nginx+MySQL)環境をDockerで構築します。
 ```
 .
 ├─ README.md
-├── lib
 ├─ docker-compose.yml
+├── container
 │    ├── php
 │    │   ├─ Dockerfile
 │    │   └─ php.ini # PHPの設定ファイル
@@ -14,7 +14,7 @@ Laravel用のLEMP(PHP+nginx+MySQL)環境をDockerで構築します。
 │    └── mysql
 │       ├─ Dockerfile
 │       └─ my.cnf # MySQLの設定ファイル
-└── project # Laravelのインストール先
+└── laravel # Laravelのインストール先
 ```
 
 ## 環境の再現手順
@@ -62,7 +62,7 @@ docker-compose.ymlでMySQLコンテナを追加する際、Docker上のMySQLデ�
 docker-compose.yml:
 ```
   db:
-    build: ./lib/mysql
+    build: ./container/mysql
     volumes:
       - db-store:/var/lib/mysql
 volumes:
