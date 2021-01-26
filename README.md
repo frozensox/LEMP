@@ -3,10 +3,11 @@ Laravel 用の LEMP(nginx+MySQL+PHP) 環境を Docker で構築します。
 
 ## ディレクトリ構成
 ```
-├─ README.md
-├─ docker-compose.yml
 ├─ .env.example
 ├─ .env # コンテナのビルドに使用する環境変数を設定
+├─ docker-compose.yml
+├─ install.sh # 自動インストール用のシェルスクリプト
+├─ README.md
 │
 ├── conf
 │    ├─ nginx.conf # nginx 設定ファイル
@@ -22,6 +23,21 @@ Laravel 用の LEMP(nginx+MySQL+PHP) 環境を Docker で構築します。
 │         └─ Dockerfile
 │
 └── laravel # Laravel プロジェクト作成先（.env で変更可）
+```
+
+## シェルスクリプトを使用した環境の再現
+1. GitHub からリポジトリをクローン
+```
+$ git clone https://github.com/frozensox/LEMP.git
+```
+2. `.git` ディレクトリを削除（Git はダウンロードのみの使用です）
+```
+$ cd LEMP
+$ rm -rf .git
+```
+3. シェルスクリプトの実行
+```
+$ sh install.sh
 ```
 
 ## 環境の再現手順
@@ -42,15 +58,7 @@ $ docker-compose up -d --build
 ```
 $ docker-compose exec app composer create-project --prefer-dist laravel/laravel .
 ```
-5. .envファイルを作成
-```
-$ docker-compose exec app cp .env.example .env
-```
-6. アプリケーションキーを生成
-```
-$ docker-compose exec app php artisan key:generate
-```
-7. マイグレーションの実行を確認
+5. マイグレーションの実行を確認
 ```
 $ docker-compose exec app php artisan migrate
 ```
