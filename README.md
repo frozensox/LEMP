@@ -1,8 +1,8 @@
 # LEMP
-Laravel用のLEMP(PHP+nginx+MySQL)環境をDockerで構築します。
-## ディレクトリ構造
+Laravel 用の LEMP(nginx+MySQL+PHP) 環境を Docker で構築します。
+
+## ディレクトリ構成
 ```
-.
 ├─ README.md
 ├─ docker-compose.yml
 │
@@ -36,25 +36,21 @@ rm -rf .git
 ```
 $ docker-compose up -d --build
 ```
-4. appコンテナに接続
+4. Laravelをインストール
 ```
-$ docker-compose exec app bash
+$ docker-compose exec web composer create-project --prefer-dist laravel/laravel .
 ```
-5. Laravelをインストール
+5. .envファイルを作成
 ```
-# composer install
+$ docker-compose exec web cp .env.example .env
 ```
-6. .envファイルを作成
+6. アプリケーションキーを生成
 ```
-# cp .env.example .env
+$ docker-compose exec web php artisan key:generate
 ```
-7. アプリケーションキーを生成
+7. マイグレーションの実行を確認
 ```
-# php artisan key:generate
-```
-8. マイグレーションの実行を確認
-```
-# php artisan migrate
+$ docker-compose exec web php artisan migrate
 ```
 ブラウザから http://localhost:8080/ にアクセスしLaravelのWelcome画面が表示されることを確認
 
@@ -62,18 +58,4 @@ $ docker-compose exec app bash
 ```
 $ docker-compose exec db bash -c 'mysql -u root -p${MYSQL_ROOT_PASSWORD} -D ${MYSQL_DATABASE}'
 mysql> SHOW TABLES;
-```
-
-## MySQLコンテナに関する注意点
-docker-compose.ymlでMySQLコンテナを追加する際、Docker上のMySQLディレクトリにホスト上のディレクトリをマウントするようにVolumesを設定すると、環境によってコンテナが立ち上がらないことがあります。
-ホストにあるディレクトリをマウントするのではなく、名前付きボリュームを指定します。  
-  
-docker-compose.yml:
-```
-  db:
-    build: ./container/mysql
-    volumes:
-      - db-store:/var/lib/mysql
-volumes:
-  db-store:
 ```
