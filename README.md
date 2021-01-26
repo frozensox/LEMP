@@ -5,21 +5,23 @@ Laravel 用の LEMP(nginx+MySQL+PHP) 環境を Docker で構築します。
 ```
 ├─ README.md
 ├─ docker-compose.yml
+├─ .env.example
+├─ .env # コンテナのビルドに使用する環境変数を設定
 │
-├── container
-│    │
-│    ├── php
-│    │    ├─ Dockerfile
-│    │    └─ php.ini # PHPの設定ファイル
-│    │
-│    ├── nginx
-│    │    └─ default.conf # サーバ設定ファイル
-│    │
-│    └── mysql
-│         ├─ Dockerfile
-│         └─ my.cnf # MySQLの設定ファイル
+├── conf
+│    ├─ nginx.conf # nginx 設定ファイル
+│    ├─ mysql.cnf # MySQL 設定ファイル
+│    └─ php.ini # PHP 設定ファイル
 │
-└── laravel # Laravelのインストール先
+├── docker
+│    │
+│    ├── app
+│    │    └─ Dockerfile
+│    │
+│    └── db
+│         └─ Dockerfile
+│
+└── laravel # Laravel プロジェクト作成先（.env で変更可）
 ```
 
 ## 環境の再現手順
