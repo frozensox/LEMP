@@ -45,7 +45,7 @@ $ sh install.sh
 ```
 $ git clone https://github.com/frozensox/LEMP.git
 ```
-2. `.git`ディレクトリを削除（Git はダウンロードするためだけに使用します）
+2. `.git` ディレクトリを削除（Git はダウンロードするためだけに使用します）
 ```
 $ cd LEMP
 rm -rf .git
@@ -54,7 +54,7 @@ rm -rf .git
 ```
 $ docker-compose up -d --build
 ```
-4. Laravelをインストール
+4. Laravel をインストール
 ```
 $ docker-compose exec app composer create-project --prefer-dist laravel/laravel .
 ```
@@ -62,21 +62,21 @@ $ docker-compose exec app composer create-project --prefer-dist laravel/laravel 
 ```
 $ docker-compose exec app php artisan migrate
 ```
-ブラウザから http://localhost:8080/ にアクセスしLaravelのWelcome画面が表示されることを確認してください。
+ブラウザから `http://localhost:8080/` にアクセスし Laravel の Welcome 画面が表示されることを確認してください。
 
 ## MySQLへの接続
 コマンドラインからルート権限で接続するには以下のコマンドを実行してください。
 ```
 $ docker-compose exec db bash -c 'mysql -p${MYSQL_ROOT_PASSWORD} -D ${MYSQL_DATABASE}'
 ```
-MySQL クライアントツールでデータベースに接続する場合、 `.env`ファイルに`DB_PORT=33060`と記述し、コンテナを再作成してください。
+MySQL クライアントツールでデータベースに接続する場合、 `.env` ファイルに `DB_PORT=33060` と記述し、コンテナを再作成してください。
 ```
 $ docker-compose down
 $ docker-compose up -d
 ```
 
 ## 設定ファイルの変更
-`conf`ディレクトリ内の設定ファイルは、docker コンテナの各設定ファイルにマウントされています。設定の変更を反映するにはトップディレクトリ内で`docker-compose restart`としてコンテナを再起動してください。
+`conf` ディレクトリ内の設定ファイルは、 docker コンテナの各設定ファイルにマウントされています。設定の変更を反映するにはトップディレクトリ内で `docker-compose restart` としてコンテナを再起動してください。
 - conf/nginx.conf  => /etc/nginx/conf.d/default.conf
 - conf/mysql.cnf   => /etc/mysql/conf.d/my.cnf
 - conf/php.ini     => /usr/local/etc/php/conf.d/php.ini
