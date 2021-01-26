@@ -38,19 +38,19 @@ $ docker-compose up -d --build
 ```
 4. Laravelをインストール
 ```
-$ docker-compose exec web composer create-project --prefer-dist laravel/laravel .
+$ docker-compose exec app composer create-project --prefer-dist laravel/laravel .
 ```
 5. .envファイルを作成
 ```
-$ docker-compose exec web cp .env.example .env
+$ docker-compose exec app cp .env.example .env
 ```
 6. アプリケーションキーを生成
 ```
-$ docker-compose exec web php artisan key:generate
+$ docker-compose exec app php artisan key:generate
 ```
 7. マイグレーションの実行を確認
 ```
-$ docker-compose exec web php artisan migrate
+$ docker-compose exec app php artisan migrate
 ```
 ブラウザから http://localhost:8080/ にアクセスしLaravelのWelcome画面が表示されることを確認
 
@@ -59,3 +59,7 @@ $ docker-compose exec web php artisan migrate
 $ docker-compose exec db bash -c 'mysql -u root -p${MYSQL_ROOT_PASSWORD} -D ${MYSQL_DATABASE}'
 mysql> SHOW TABLES;
 ```
+
+## 参考記事
+- [【超入門】20分でLaravel開発環境を爆速構築するDockerハンズオン](https://qiita.com/ucan-lab/items/56c9dc3cf2e6762672f4)
+- [Dockerを使ってLaravelのローカル開発環境を作る(Apache版)](https://qiita.com/ucan-lab/items/38cd04cee1f3f9e024b9)
