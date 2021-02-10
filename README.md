@@ -1,11 +1,12 @@
 # LEMP
-Laravel 用の LEMP(nginx+MySQL+PHP) 環境を Docker で構築します。
+Laravel 用の LEMP(nginx+MySQL+PHP) 環境を Docker + docker-sync で構築します。docker-syncを導入することでファイルの同期が速くなり、サーバーアクセスの遅延を減らすことができます。
 
 ## ディレクトリ構成
 ```
 ├─ .env # コンテナのビルドに使用する環境変数を設定
 ├─ .env.example
 ├─ docker-compose.yml
+├─ docker-sync.yml
 ├─ install.sh # 自動インストール用のシェルスクリプト
 ├─ README.md
 │
@@ -25,7 +26,12 @@ Laravel 用の LEMP(nginx+MySQL+PHP) 環境を Docker で構築します。
 └── laravel # Laravel プロジェクト作成先（.env で変更可）
 ```
 
-## シェルスクリプトを使用した環境の再現
+## 動作環境
+- git がインストール済みで `git` コマンドが使用可能
+- docker がインストール済みで `docker-compose` コマンドが使用可能
+- docker-sync がインストール済み
+
+## シェルスクリプトを使用した環境再現
 1. GitHub からリポジトリをクローン
 ```
 $ git clone https://github.com/frozensox/LEMP.git
@@ -39,8 +45,12 @@ $ rm -rf .git
 ```
 $ sh install.sh
 ```
+4. docker-syncの起動
+```
+$ docker-sync start
+```
 
-## 環境の再現手順
+## 手動での環境再現
 1. GitHub からリポジトリをクローン
 ```
 $ git clone https://github.com/frozensox/LEMP.git
@@ -63,6 +73,11 @@ $ docker-compose exec app composer create-project --prefer-dist laravel/laravel 
 $ docker-compose exec app php artisan migrate
 ```
 ブラウザから `http://localhost:8080/` にアクセスし Laravel の Welcome 画面が表示されることを確認してください。
+
+6. docker-syncの起動
+```
+$ docker-sync start
+```
 
 ## MySQLへの接続
 コマンドラインからルート権限で接続するには以下のコマンドを実行してください。
