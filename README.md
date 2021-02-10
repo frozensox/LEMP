@@ -60,21 +60,25 @@ $ git clone https://github.com/frozensox/LEMP.git
 $ cd LEMP
 rm -rf .git
 ```
-3. コンテナをビルド
+3. `.env` ファイルの作成
+```
+cp .env.example .env &&
+```
+4. コンテナをビルド
 ```
 $ docker-compose up -d --build
 ```
-4. Laravel をインストール
+5. Laravel をインストール
 ```
 $ docker-compose exec app composer create-project --prefer-dist laravel/laravel .
 ```
-5. マイグレーションの実行を確認
+6. マイグレーションの実行を確認
 ```
 $ docker-compose exec app php artisan migrate
 ```
 ブラウザから `http://localhost:8080/` にアクセスし Laravel の Welcome 画面が表示されることを確認してください。
 
-6. docker-syncの起動
+7. docker-syncの起動
 ```
 $ docker-sync start
 ```
